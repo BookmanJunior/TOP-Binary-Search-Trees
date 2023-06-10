@@ -7,4 +7,32 @@ const mergeSort = (arr) => {
     mergeSort(rightHalf);
     merge(leftHalf, rightHalf, arr);
   }
+  return arr;
 };
+
+function merge(leftHalf, rightHalf, arr) {
+  let i = 0;
+  let j = 0;
+  let k = 0;
+
+  while (i < leftHalf.length && j < rightHalf.length) {
+    if (leftHalf[i] < rightHalf[j]) {
+      arr[k++] = leftHalf[i++];
+    } else {
+      arr[k++] = rightHalf[j++];
+    }
+  }
+
+  for (; i < leftHalf.length; i++) {
+    arr[k++] = leftHalf[i];
+  }
+
+  for (; j < rightHalf.length; j++) {
+    arr[k++] = rightHalf[j];
+  }
+}
+
+export default mergeSort;
+
+// test
+// console.log(mergeSort([2, 4, 3, 1, 10, 7, 20]));
