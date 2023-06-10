@@ -1,4 +1,4 @@
-const Node = (data, leftNode, rightNode) => ({
+const Node = (data, leftNode = null, rightNode = null) => ({
   data,
   leftNode,
   rightNode,
