@@ -1,13 +1,14 @@
 const mergeSort = (arr) => {
-  if (arr.length > 1) {
-    const midPoint = Math.ceil(arr.length / 2);
-    const leftHalf = arr.slice(0, midPoint);
-    const rightHalf = arr.slice(midPoint);
-    mergeSort(leftHalf);
-    mergeSort(rightHalf);
-    merge(leftHalf, rightHalf, arr);
-  }
-  return arr;
+  if (!arr.length) return "Array can't be empty";
+
+  if (arr.length === 1) return arr;
+
+  const midPoint = Math.ceil(arr.length / 2);
+  const leftHalf = arr.slice(0, midPoint);
+  const rightHalf = arr.slice(midPoint);
+  mergeSort(leftHalf);
+  mergeSort(rightHalf);
+  return merge(leftHalf, rightHalf, arr);
 };
 
 function merge(leftHalf, rightHalf, arr) {
@@ -30,9 +31,11 @@ function merge(leftHalf, rightHalf, arr) {
   for (; j < rightHalf.length; j++) {
     arr[k++] = rightHalf[j];
   }
+
+  return arr;
 }
 
 export default mergeSort;
 
 // test
-// console.log(mergeSort([2, 4, 3, 1, 10, 7, 20]));
+console.log(mergeSort([2, 4, 3, 1, 10, 7, 20]));
