@@ -1,7 +1,8 @@
 import Node from "./node.js";
+import mergeSort from "./mergeSort.js";
 
 const Tree = (array) => {
-  const root = buildTree(array);
+  const root = buildTree(mergeSort([...new Set(array)]));
 
   function buildTree(arr, start = 0, end = arr.length - 1) {
     if (start > end) return null;
