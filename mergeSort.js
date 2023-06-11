@@ -6,9 +6,8 @@ const mergeSort = (arr) => {
   const midPoint = Math.ceil(arr.length / 2);
   const leftHalf = arr.slice(0, midPoint);
   const rightHalf = arr.slice(midPoint);
-  mergeSort(leftHalf);
-  mergeSort(rightHalf);
-  return merge(leftHalf, rightHalf, arr);
+
+  return merge(mergeSort(leftHalf), mergeSort(rightHalf), arr);
 };
 
 function merge(leftHalf, rightHalf, arr) {
@@ -38,4 +37,4 @@ function merge(leftHalf, rightHalf, arr) {
 export default mergeSort;
 
 // test
-console.log(mergeSort([2, 4, 3, 1, 10, 7, 20]));
+// console.log(mergeSort([2, 4, 3, 1, 10, 7, 20]));
