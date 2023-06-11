@@ -3,16 +3,14 @@ import Node from "./node.js";
 const Tree = (array) => {
   const root = buildTree(array);
 
-  function buildTree(arr) {
-    if (arr.length < 1) return null;
+  function buildTree(arr, start = 0, end = arr.length - 1) {
+    if (start > end) return null;
 
-    const midPoint = Math.floor(arr.length / 2);
-    const leftHalf = arr.slice(0, midPoint);
-    const rightHalf = arr.slice(midPoint + 1);
+    const midPoint = Math.floor((start + end) / 2);
 
     const newNode = Node(arr[midPoint]);
-    newNode.leftNode = buildTree(leftHalf);
-    newNode.rightNode = buildTree(rightHalf);
+    newNode.leftNode = buildTree(arr, start, midPoint - 1);
+    newNode.rightNode = buildTree(arr, midPoint + 1, end);
 
     return newNode;
   }
