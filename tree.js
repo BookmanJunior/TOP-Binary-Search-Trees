@@ -33,9 +33,26 @@ const Tree = (array) => {
     return tree;
   }
 
+  function find(value, tree = root) {
+    if (tree === null) {
+      return `Node with ${value} doesn't exist`;
+    }
+
+    if (value < tree.data) {
+      return find(value, tree.leftNode);
+    }
+
+    if (value > tree.data) {
+      return find(value, tree.rightNode);
+    }
+
+    return tree;
+  }
+
   return {
     root,
     insert,
+    find,
   };
 };
 
