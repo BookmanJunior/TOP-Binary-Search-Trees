@@ -16,8 +16,26 @@ const Tree = (array) => {
     return newNode;
   }
 
+  function insert(value, tree = root) {
+    if (tree === null) {
+      tree = Node(value);
+      return tree;
+    }
+
+    if (value < tree.data) {
+      tree.leftNode = insert(value, tree.leftNode);
+    }
+
+    if (value > tree.data) {
+      tree.rightNode = insert(value, tree.rightNode);
+    }
+
+    return tree;
+  }
+
   return {
     root,
+    insert,
   };
 };
 
