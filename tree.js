@@ -99,12 +99,33 @@ const Tree = (array) => {
     return arr;
   }
 
+  function inOrder(cb = null, tree = root, arr = []) {
+    if (tree === null) return;
+
+    if (tree.leftNode) {
+      inOrder(cb, tree.leftNode, arr);
+    }
+
+    if (cb && typeof cb === "function") {
+      tree.data = cb(tree.data);
+    } else if (!cb) {
+      arr.push(tree.data);
+    }
+
+    if (tree.rightNode) {
+      inOrder(cb, tree.rightNode, arr);
+    }
+
+    return arr;
+  }
+
   return {
     root,
     insert,
     find,
     levelOrder,
     preOrder,
+    inOrder,
   };
 };
 
