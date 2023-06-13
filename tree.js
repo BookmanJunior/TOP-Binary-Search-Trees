@@ -119,6 +119,26 @@ const Tree = (array) => {
     return arr;
   }
 
+  function postOrder(cb = null, tree = root, arr = []) {
+    if (tree === null) return;
+
+    if (tree.leftNode) {
+      postOrder(cb, tree.leftNode, arr);
+    }
+
+    if (tree.rightNode) {
+      postOrder(cb, tree.rightNode, arr);
+    }
+
+    if (cb) {
+      tree.data = cb(tree.data);
+    } else if (!cb) {
+      arr.push(tree.data);
+    }
+
+    return arr;
+  }
+
   return {
     root,
     insert,
@@ -126,6 +146,7 @@ const Tree = (array) => {
     levelOrder,
     preOrder,
     inOrder,
+    postOrder,
   };
 };
 
