@@ -79,7 +79,7 @@ const Tree = (array) => {
     if (cb === null) return arr;
   }
 
-  function inOrder(cb = null, tree = root, arr = []) {
+  function preOrder(cb = null, tree = root, arr = []) {
     if (tree === null) return;
 
     if (cb) {
@@ -89,11 +89,11 @@ const Tree = (array) => {
     }
 
     if (tree.leftNode) {
-      inOrder(cb, tree.leftNode, arr);
+      preOrder(cb, tree.leftNode, arr);
     }
 
     if (tree.rightNode) {
-      inOrder(cb, tree.rightNode, arr);
+      preOrder(cb, tree.rightNode, arr);
     }
 
     return arr;
@@ -104,7 +104,7 @@ const Tree = (array) => {
     insert,
     find,
     levelOrder,
-    inOrder,
+    preOrder,
   };
 };
 
