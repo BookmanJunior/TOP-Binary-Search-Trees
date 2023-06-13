@@ -49,10 +49,41 @@ const Tree = (array) => {
     return tree;
   }
 
+  function levelOrder(cb = null) {
+    if (root === null) return;
+
+    const queue = [root];
+    // array to hold data if no cb was provided
+    const arr = [];
+
+    while (queue.length) {
+      const currNode = queue.shift();
+
+      if (cb === null) {
+        arr.push(currNode.data);
+      }
+
+      if (cb) {
+        currNode.data = cb(currNode.data);
+      }
+
+      if (currNode.leftNode) {
+        queue.push(currNode.leftNode);
+      }
+
+      if (currNode.rightNode) {
+        queue.push(currNode.rightNode);
+      }
+    }
+
+    if (cb === null) return arr;
+  }
+
   return {
     root,
     insert,
     find,
+    levelOrder,
   };
 };
 
