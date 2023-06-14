@@ -139,6 +139,17 @@ const Tree = (array) => {
     return arr;
   }
 
+  function height(tree = root) {
+    if (tree === null) {
+      return -1;
+    }
+
+    const leftHeight = height(tree.leftNode);
+    const rightHeight = height(tree.rightNode);
+
+    return Math.max(leftHeight, rightHeight) + 1;
+  }
+
   return {
     root,
     insert,
@@ -147,6 +158,7 @@ const Tree = (array) => {
     preOrder,
     inOrder,
     postOrder,
+    height,
   };
 };
 
