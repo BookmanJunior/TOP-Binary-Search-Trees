@@ -148,6 +148,26 @@ const Tree = (array) => {
     return Math.max(leftHeight, rightHeight) + 1;
   }
 
+  function depth(node, tree = root, d = 0) {
+    if (node === null || tree === null) {
+      return `Given ${node} doesn't exist.`;
+    }
+
+    if (node === tree.data) {
+      return d;
+    }
+
+    if (node < tree.data) {
+      d += 1;
+      return depth(node, tree.leftNode, d);
+    }
+
+    if (node > tree.data) {
+      d += 1;
+      return depth(node, tree.rightNode, d);
+    }
+  }
+
   return {
     root,
     insert,
@@ -157,6 +177,7 @@ const Tree = (array) => {
     inOrder,
     postOrder,
     height,
+    depth,
   };
 };
 
