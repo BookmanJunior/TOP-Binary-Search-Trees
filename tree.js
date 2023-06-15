@@ -59,12 +59,10 @@ const Tree = (array) => {
     while (queue.length) {
       const currNode = queue.shift();
 
-      if (cb === null) {
-        arr.push(currNode.data);
-      }
-
-      if (cb) {
+      if (cb && typeof cb === "function") {
         currNode.data = cb(currNode.data);
+      } else if (!cb) {
+        arr.push(currNode.data);
       }
 
       if (currNode.leftNode) {
@@ -82,7 +80,7 @@ const Tree = (array) => {
   function preOrder(cb = null, tree = root, arr = []) {
     if (tree === null) return;
 
-    if (cb) {
+    if (cb && typeof cb === "function") {
       tree.data = cb(tree.data);
     } else if (!cb) {
       arr.push(tree.data);
@@ -120,7 +118,7 @@ const Tree = (array) => {
   }
 
   function postOrder(cb = null, tree = root, arr = []) {
-    if (tree === null) return;
+    if (tree === null) return arr;
 
     if (tree.leftNode) {
       postOrder(cb, tree.leftNode, arr);
@@ -130,7 +128,7 @@ const Tree = (array) => {
       postOrder(cb, tree.rightNode, arr);
     }
 
-    if (cb) {
+    if (cb && typeof cb === "function") {
       tree.data = cb(tree.data);
     } else if (!cb) {
       arr.push(tree.data);
