@@ -18,8 +18,8 @@ const Tree = (array) => {
 
   function insert(value, tree = root) {
     if (tree === null) {
-      tree = Node(value);
-      return tree;
+      // return is assigned to recursion that called it
+      return Node(value);
     }
 
     if (value < tree.data) {
