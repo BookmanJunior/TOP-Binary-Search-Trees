@@ -2,7 +2,7 @@ import Node from "./node.js";
 import mergeSort from "./mergeSort.js";
 
 const Tree = (array) => {
-  const root = buildTree(mergeSort([...new Set(array)]));
+  let root = buildTree(mergeSort([...new Set(array)]));
 
   function buildTree(arr, start = 0, end = arr.length - 1) {
     if (start > end) return null;
@@ -168,8 +168,15 @@ const Tree = (array) => {
     }
   }
 
+  function rebalance() {
+    const arr = inOrder();
+    root = buildTree(arr);
+  }
+
   return {
-    root,
+    get root() {
+      return root;
+    },
     insert,
     find,
     levelOrder,
@@ -178,6 +185,7 @@ const Tree = (array) => {
     postOrder,
     height,
     depth,
+    rebalance,
   };
 };
 
