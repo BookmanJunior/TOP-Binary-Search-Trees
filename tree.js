@@ -41,13 +41,14 @@ const Tree = (array) => {
 
     if (tree.data === node) {
       if (tree.leftNode && tree.rightNode) {
-        const temp = tree;
-        tree = tree.rightNode;
-        while (tree.leftNode) {
-          tree = tree.leftNode;
+        let temp = tree;
+        temp = temp.rightNode;
+        while (temp.leftNode) {
+          temp = temp.leftNode;
         }
-        temp.data = tree.data;
-        tree = temp;
+        // set node to the next biggest one found
+        tree.data = temp.data;
+        // remove copied node
         tree.rightNode = remove(tree.data, tree.rightNode);
         return tree;
       }
