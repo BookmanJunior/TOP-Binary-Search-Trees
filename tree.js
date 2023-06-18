@@ -35,6 +35,27 @@ const Tree = (array) => {
 
   function remove(node, tree = root) {
     if (tree.data === node) {
+      if (tree.leftNode && tree.rightNode) {
+        const temp = tree;
+        tree = tree.rightNode;
+        while (tree.leftNode) {
+          tree = tree.leftNode;
+        }
+        temp.data = tree.data;
+        tree = temp;
+        tree.rightNode = remove(tree.data, tree.rightNode);
+        return tree;
+      }
+
+      if (tree.leftNode && !tree.rightNode) {
+        tree = tree.leftNode;
+        return tree;
+      }
+
+      if (tree.rightNode && !tree.leftNode) {
+        tree = tree.rightNode;
+        return tree;
+      }
       tree = null;
       return tree;
     }
