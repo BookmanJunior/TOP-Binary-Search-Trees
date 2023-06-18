@@ -34,6 +34,11 @@ const Tree = (array) => {
   }
 
   function remove(node, tree = root) {
+    if (tree === null) {
+      console.log(`Node ${node} doesn't exist`);
+      return tree;
+    }
+
     if (tree.data === node) {
       if (tree.leftNode && tree.rightNode) {
         const temp = tree;
