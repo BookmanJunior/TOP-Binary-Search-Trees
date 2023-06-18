@@ -212,6 +212,7 @@ const Tree = (array) => {
     }
   }
 
+  // TODO write optimal solution for this assignment
   function isBalanced(tree = root) {
     const leftHeight = height(tree.leftNode);
     const rightHeight = height(tree.rightNode);
