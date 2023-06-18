@@ -214,14 +214,12 @@ const Tree = (array) => {
 
   // TODO write optimal solution for this assignment
   function isBalanced(tree = root) {
+    if (tree === null) return console.log("Tree is empty");
+
     const leftHeight = height(tree.leftNode);
     const rightHeight = height(tree.rightNode);
 
-    if (Math.abs(leftHeight - rightHeight) <= 1) {
-      return true;
-    }
-
-    return false;
+    return Math.abs(leftHeight - rightHeight) <= 1;
   }
 
   function rebalance() {
