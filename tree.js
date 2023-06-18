@@ -212,6 +212,17 @@ const Tree = (array) => {
     }
   }
 
+  function isBalanced(tree = root) {
+    const leftHeight = height(tree.leftNode);
+    const rightHeight = height(tree.rightNode);
+
+    if (Math.abs(leftHeight - rightHeight) <= 1) {
+      return true;
+    }
+
+    return false;
+  }
+
   function rebalance() {
     const arr = inOrder();
     root = buildTree(arr);
@@ -230,6 +241,7 @@ const Tree = (array) => {
     postOrder,
     height,
     depth,
+    isBalanced,
     rebalance,
   };
 };
