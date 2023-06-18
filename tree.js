@@ -33,6 +33,23 @@ const Tree = (array) => {
     return tree;
   }
 
+  function remove(node, tree = root) {
+    if (tree.data === node) {
+      tree = null;
+      return tree;
+    }
+
+    if (node < tree.data) {
+      tree.leftNode = remove(node, tree.leftNode);
+    }
+
+    if (node > tree.data) {
+      tree.rightNode = remove(node, tree.rightNode);
+    }
+
+    return tree;
+  }
+
   function find(value, tree = root) {
     if (tree === null) {
       return `Node with ${value} doesn't exist`;
@@ -178,6 +195,7 @@ const Tree = (array) => {
       return root;
     },
     insert,
+    remove,
     find,
     levelOrder,
     preOrder,
